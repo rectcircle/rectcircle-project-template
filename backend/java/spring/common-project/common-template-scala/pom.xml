@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>common-template</artifactId>
+        <groupId>cn.rectcircle</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>common-template-scala</artifactId>
+    <name>common-template-scala</name>
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <scala.version>2.13.1</scala.version>
+    </properties>
+
+	<!-- https://docs.scala-lang.org/tutorials/scala-with-maven.html -->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>4.3.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <recompileMode>incremental</recompileMode>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

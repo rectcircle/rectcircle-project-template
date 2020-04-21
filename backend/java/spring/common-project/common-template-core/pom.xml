@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>common-template</artifactId>
+        <groupId>cn.rectcircle</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>common-template-core</artifactId>
+    <name>common-template-core</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- 外部依赖 -->
+        <!-- TODO -->
+        <!-- 内部依赖 -->
+        <dependency>
+            <groupId>cn.rectcircle</groupId>
+            <artifactId>common-template-dto</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.rectcircle</groupId>
+            <artifactId>common-template-scala</artifactId>
+        </dependency>
+        <!-- Spring Boot 核心 Starter，在此明确声明 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!-- 外部依赖 -->
+        <!-- 开发工具 -->
+        <!-- IDE 支持: 自定义配置 -->
+        <!-- 用于生成 Spring boot 的 configuration-metadata，IDE读取配置后将可以对配置文件进行校验、检查和智能提示 -->
+        <!-- https://www.baeldung.com/spring-boot-configuration-metadata -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- 数据库 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- 使用 fastjson 替代 JackSon -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!-- 测试 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- 其他 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.13</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins></plugins>
+    </build>
+
+</project>

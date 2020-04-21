@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>common-template</artifactId>
+        <groupId>cn.rectcircle</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>common-template-dto</artifactId>
+    <name>common-template-dto</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <!-- 使用 fastjson 替代 JackSon 用于可能需要使用的注解 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins></plugins>
+    </build>
+
+</project>

@@ -1,0 +1,11 @@
+debug: true
+
+spring:
+    jmx:
+        # Spring Boot Tools 扩展支持
+        enabled: true
+
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update

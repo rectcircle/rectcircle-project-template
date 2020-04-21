@@ -1,0 +1,34 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-BatchApplication<common-template-batch>",
+            "request": "launch",
+            "mainClass": "cn.rectcircle.commontemplate.BatchApplication",
+            "projectName": "common-template-batch",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "dev-rectcircle"
+            },
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-WebApplication<common-template-web>",
+            "request": "launch",
+            "mainClass": "cn.rectcircle.commontemplate.WebApplication",
+            "projectName": "common-template-web",
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "dev-rectcircle"
+            },
+        }
+    ]
+}

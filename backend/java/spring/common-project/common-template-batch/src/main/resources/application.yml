@@ -1,0 +1,38 @@
+spring:
+    datasource:
+        # 基本配置
+        driver-class-name: com.mysql.jdbc.Driver
+        # 海外开发机
+        url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+        username: root
+        password: 123456
+        continue-on-error: false
+        # 连接池
+        type: com.zaxxer.hikari.HikariDataSource
+        hikari:
+            minimum-idle: 0
+            maximum-pool-size: 15
+            auto-commit: false
+            idle-timeout: 30000
+            pool-name: common-tempate
+            max-lifetime: 1800000
+            connection-timeout: 30000
+            connection-test-query: SELECT 1
+
+    # JPA
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        open-in-view: false
+        database: mysql
+        properties:
+            hibernate:
+                batch-size: 200
+                # 表名/字段名映射策略：驼峰转下划线
+                namingStrategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+    # 资源文件
+    resources:
+        static-locations: classpath:/static/
+
+app:
+    region: cn

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- Spring Boot 的 Parent -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+    <!-- 项目标识符 -->
+    <groupId>cn.rectcircle</groupId>
+    <artifactId>common-template</artifactId>
+    <version>1.0.0</version>
+    <name>common-template</name>
+    <packaging>pom</packaging>
+
+    <!-- 属性 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>11</java.version>
+        <!-- 作用于 maven-compiler-plugin 的 release 和 target-->
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- 作用于 maven-compiler-plugin source 和 maven-pmd-plugin 的 targetJdk   -->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+    </properties>
+
+    <!-- 内部仓库：有的话请在此配置 -->
+    <repositories></repositories>
+
+    <!-- 子模块 -->
+    <modules>
+        <module>common-template-scala</module>
+        <module>common-template-dto</module>
+        <module>common-template-core</module>
+        <module>common-template-batch</module>
+        <module>common-template-web</module>
+    </modules>
+
+    <!-- 依赖管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- 外部依赖 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.68</version>
+            </dependency>
+            <!-- 子模块依赖 -->
+            <dependency>
+                <groupId>cn.rectcircle</groupId>
+                <artifactId>common-template-scala</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.rectcircle</groupId>
+                <artifactId>common-template-dto</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.rectcircle</groupId>
+                <artifactId>common-template-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.rectcircle</groupId>
+                <artifactId>common-template-batch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.rectcircle</groupId>
+                <artifactId>common-template-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!-- 构建配置 -->
+    <build>
+        <!-- 插件依赖管理 -->
+        <pluginManagement>
+            <plugins>
+                <!-- 阿里代码规约检查 -->
+                <!-- http://maven.apache.org/plugins/maven-pmd-plugin/index.html -->
+                <!-- https://github.com/alibaba/p3c/tree/master/p3c-pmd -->
+                <!-- https://github.com/alibaba/p3c/issues/467 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <rulesets>
+                            <ruleset>${project.basedir}/pmd-ruleset.xml</ruleset>
+                        </rulesets>
+                        <!-- 测试报告聚合在父目录 -->
+                        <aggregate>true</aggregate>
+                        <!-- 打印错误 -->
+                        <printFailingErrors>true</printFailingErrors>
+                        <!-- 启用缓存加速 -->
+                        <analysisCache>true</analysisCache>
+                        <!-- 消除警告 -->
+                        <linkXRef>false</linkXRef>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>check</goal>
+                                <goal>pmd</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.alibaba.p3c</groupId>
+                            <artifactId>p3c-pmd</artifactId>
+                            <version>2.0.1</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <!-- 代码样式检查 -->
+                <!-- http://maven.apache.org/plugins/maven-checkstyle-plugin/ -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>3.1.1</version>
+                    <configuration>
+                        <configLocation>checkstyle.xml</configLocation>
+                        <encoding>UTF-8</encoding>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <!-- 警告信息也直接失败 -->
+                        <violationSeverity>warning</violationSeverity>
+                        <linkXRef>false</linkXRef>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <!-- verify 阶段 -->
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- http://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html -->
+            <!-- 配置跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- <skipTests>true</skipTests> -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
